@@ -61,6 +61,8 @@ def build_tweet(paste):
             tweet += ' Possible ' + paste.type + ' configuration'
         elif paste.type == 'ssh_private':
             tweet += ' Possible SSH private key'
+        elif paste.type == 'telegram_bot':
+            tweet += ' Possible Telegram Bot API key'
         elif paste.type == 'honeypot':
             tweet += ' Dionaea Honeypot Log'
         elif paste.type == 'pgp_private':

@@ -60,6 +60,8 @@ class Paste(object):
             self.type = 'pgp_private'
         if regexes['ssh_private'].search(self.text):
             self.type = 'ssh_private'
+        if regexes['telegram_bot'].search(self.text):
+            self.type = 'telegram_bot'
         # if regexes['juniper'].search(self.text): self.type = 'Juniper'
         for regex in regexes['banlist']:
             if regex.search(self.text):

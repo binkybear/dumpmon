@@ -12,6 +12,7 @@ regexes = {
     'honeypot': re.compile(r'<dionaea\.capture>', re.I),
     'pgp_private': re.compile(r'BEGIN PGP PRIVATE', re.I),
     'ssh_private': re.compile(r'BEGIN RSA PRIVATE', re.I),
+    'telegram_bot': re.compile(r'\d{9}:[0-9A-Za-z_-]{35}'),
     'db_keywords': [
 		re.compile(r'((customers?|email|users?|members?|acc(?:oun)?ts?)([-_|/\s]?(address|name|id[^")a-zA-Z0-9_]|[-_:|/\\])))', re.I),
         re.compile(r'((\W?pass(wor)?d|hash)[\s|:])', re.I),
