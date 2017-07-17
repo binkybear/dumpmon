@@ -4,7 +4,7 @@ import time
 import re
 from pymongo import MongoClient
 from requests import ConnectionError
-from settings import USE_DB, DB_HOST, DB_PORT
+from settings import USE_DB, DB_HOST, DB_PORT, MONGO_USERNAME, MONGO_PASSWORD
 import logging
 import helper
 
@@ -33,8 +33,14 @@ class Site(object):
         if queue is None:
             self.queue = []
         if USE_DB:
-            # Lazily create the db and collection if not present
-            self.db_client = MongoClient(DB_HOST, DB_PORT).paste_db.pastes
+            # If there is a Mongo username and password in settings, use that
+            if MONGO_USERNAME and MONGO_PASSWORD:
+                self.db_client = MongoClient('mongodb://' + MONGO_USERNAME + ':' +
+                                             MONGO_PASSWORD + '@' +
+                                             str(DB_HOST) + ':' + str(DB_PORT) + '/').paste_db.pastes
+            else:
+                # Lazily create the db and collection if not present
+                self.db_client = MongoClient(DB_HOST, DB_PORT).paste_db.pastes
 
 
     def empty(self):

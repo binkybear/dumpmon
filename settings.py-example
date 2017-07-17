@@ -4,6 +4,10 @@ USE_DB = True
 DB_HOST = 'localhost'
 DB_PORT = 27017
 
+# If you have a mongodb username/password
+MONGO_USERNAME = ''
+MONGO_PASSWORD = ''
+
 # Thresholds
 EMAIL_THRESHOLD = 20
 HASH_THRESHOLD = 30
