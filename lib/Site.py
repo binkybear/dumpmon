@@ -4,7 +4,6 @@ import time
 import re
 from pymongo import MongoClient
 from requests import ConnectionError
-from twitter import TwitterError
 from settings import USE_DB, DB_HOST, DB_PORT
 import logging
 import helper
@@ -67,7 +66,7 @@ class Site(object):
     def list(self):
         print('\n'.join(url for url in self.queue))
 
-    def monitor(self, bot, t_lock):
+    def monitor(self, t_lock):
         self.update()
         while(1):
             while not self.empty():
@@ -92,8 +91,8 @@ class Site(object):
                                 'url' : paste.url
                                })
                         try:
-                            bot.statuses.update(status=tweet)
-                        except TwitterError:
+                            print(tweet)
+                        except:
                             pass
             self.update()
             while self.empty():
